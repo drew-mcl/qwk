@@ -56,19 +56,8 @@ TODO: explain syntax
 ## Exmaple qwkfile
 
 ```yaml
-greet:
-  desc: "Greets the user with a custom message"
-  exec: "echo Hello, {0}! Today is a {1} day."
-  args:
-    - name: name
-      desc: "The name of the person to greet"
-      default: "Stranger"
-    - name: mood
-      desc: "The mood of the day"
-      default: "great"
+TODO
 ```
-
-In this example, the greet command takes two arguments: the name of the person to greet and the mood of the day. The placeholders {0} and {1} in the exec field will be replaced by these arguments, respectively.
 
 ### Running Commands
 
