@@ -1,0 +1,16 @@
+install: build promote
+
+promote:
+    mv qwk ~/bin/qwk
+    chmod +x ~/bin/qwk
+    echo "promoted new qwk version"
+
+build:
+    go build ./cmd/qwk
+    go test ./...
+    ./qwk -v
+
+git:
+    git add . 
+    git commit -m "$*"
+    git push 

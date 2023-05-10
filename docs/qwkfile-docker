@@ -1,0 +1,58 @@
+# Functionailty proposal for docker support 
+# --------------------------------------------
+# commands can be labeled with @docker to indicate that they should be run in a docker container
+# the image to use can be specified with @docker [img]
+# or specifed globally at the top with @dockerdefault [img]
+# if an output is specified, it will be extracted from the docker container and placed in the current directory
+# if an output is not specified, the command will be run in the docker container and the output will be displayed
+# output can be defiend globally or with the command "@output [output]"
+# the terminal output of the container should be attached to the terminal output of the qwk command
+
+# Process flow of internal system for docker support
+# --------------------------------
+# 1. Parse qwkfile
+# 2. If @dockerdefault is specified, set the default docker image to use
+# 2.1 If @dockerdefault is specified, check if the image exists locally
+# 2.2 If it does not, pull the image
+# 3. If @docker is specified, set the docker image to use for that command
+# 4. If a command is specified, check if it has a docker image specified
+# 4.1 If it does, check if the image exists locally
+# 4.2 If it does not, pull the image
+# 5. If it does, run the command in a docker container
+# 5.1 If an output is specified, extract the output from the docker container
+# 5.2 If an output is not specified, display the output from the docker container
+# 6. If it does not, run the command locally
+
+# Extracting artifacts, files, and directories from docker containers
+# -------------------------------------------------------------------
+# 1. If the command has an output specified, create the directory specified if it does not exist
+# 2. Run the command in the docker container with the -v flag to mount the temporary directory
+# 3. Copy the artifacts from the temporary directory to the current directory
+
+
+
+# Example qwkfile with docker support
+# -----------------------------------
+@docker default golang:1.15.6-alpine3.12
+@output ./build
+
+@docker default
+example:
+    echo "hello from example"
+    
+
+@docker golang:1.15.6-alpine3.12
+test:
+    echo "hello"
+
+@docker java:8 @output ./build
+build:
+    echo "building java project"
+    javac HelloWorld.java
+    echo "done building java project"
+
+@docker java:8 @output default
+mvnbuild:
+    echo "building java project with maven"
+    mvn clean install
+    echo "done building java project with maven"

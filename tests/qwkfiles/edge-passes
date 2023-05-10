@@ -1,0 +1,68 @@
+# Description: qwkfile for functional testing
+
+# Basic variable assignment - Works
+GLOBALVAR="hello from global"
+
+# Basic command assignment - Works
+COMMANDVAR=$(pwd)
+
+# Works
+build: 
+    go build .
+
+# Works
+and:
+    cd cmd/qwk && pwd
+
+echocommand
+    echo $(pwd)
+
+# Does not work
+multistateful:
+    cd cmd/qwk
+    echo $(pwd)
+
+# Targets with dependencies - Broken
+clean:
+    rm -f output.txt
+
+write_hello: clean
+    echo "Hello" > output.txt
+
+write_world: clean
+    echo "World" >> output.txt
+
+greet: write_hello write_world
+    cat output.txt
+
+
+# Does not work
+multiecho:
+    echo "this is a long command that spans multiple lines \
+    and continues here."
+
+
+# Does not work
+var1:
+    myvar="hello from var1"
+    echo $myvar
+
+# Does not work
+var2:
+    myvar="hello from var2" && echo $myvar
+
+# Works fine
+globalvar:
+    echo $(GLOBALVAR)
+
+# Works fine
+globalcommand:
+    echo $(COMMANDVAR)
+
+# Works fine
+execscript:
+    echo "-> calling script..."
+    chmod +x ./tests/scripts/test.sh
+    ./tests/scripts/test.sh
+    echo "[x] done calling script"
+

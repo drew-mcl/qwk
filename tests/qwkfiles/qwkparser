@@ -1,0 +1,18 @@
+# Variables
+CC = gcc
+CFLAGS = -Wall -g
+
+# Dependencies
+all: main.o util.o
+
+# Subtitution1
+main.o:
+	$(CC) $(CFLAGS) -c main.c
+
+# Subtitution2
+util.o:
+	$(CC) $(CFLAGS) -c util.c
+
+# Basic
+clean:
+	rm -f *.o main

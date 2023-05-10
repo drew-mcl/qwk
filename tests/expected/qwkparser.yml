@@ -1,0 +1,8 @@
+variables:
+  CC: gcc
+  CFLAGS: -Wall -g
+targets:
+  - all
+  - main.o
+  - util.o
+  - clean

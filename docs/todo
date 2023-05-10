@@ -1,0 +1,22 @@
+# Todos
+- useable on windows
+- autocomplete
+- multiline commands
+- fully intergrate logger pkg
+- attach cli input from terminal
+- flag to define log level
+- argument errors are not being thrown correct. Should expect args releated to numbering of $1, $2. And if $* and none are provided also through error
+
+# Maybes
+- support for complex commands
+- logic for commands that fail in chain. Should it stop exec? probably. 
+    maybe define away to say, dont fail the chain. 
+- flag that just runs everything in the quickfile
+
+# Larger Projects
+- runners 
+- leverage caching
+
+
+# ERRORS
+- There is an issue when you rename the command thats called in a chain. It will still call the old command name and fail the execution. This should only be relevant to the chain no the parsing operation.

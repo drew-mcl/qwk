@@ -1,0 +1,8 @@
+Targets:
+  all:
+    single_command:
+      output: "Single command"
+    chained_commands:
+      output: "Chained command 1\nChained command 2"
+    variable_substitution:
+      output: "Hello, World!"

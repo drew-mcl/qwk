@@ -1,0 +1,42 @@
+MESSAGE = "Hello, World!"
+COMMAND_VAR = $(pwd)
+# - The following targets are used for testing the core functionality of qwk.
+# - They expected to pass when qwk is working correctly.
+# - For edge cases and tests that break core logic, see tests/qwkfiles/experimental & tests/qwkfiles/edge
+
+# Chains
+# --------------------------------------------------
+all: single_command chained_commands variable_sub
+
+# - Commands
+# --------------------------------------------------
+single_command:
+	echo "Single command"
+
+chained_commands:
+	echo "Chained command 1" && echo "Chained command 2"
+
+# - Variables
+# --------------------------------------------------
+variable_sub:
+	echo $(MESSAGE)
+
+command_sub:
+	echo $(COMMAND_VAR)
+
+# - Arguments
+# --------------------------------------------------
+single_argument:
+	echo $1
+
+multiple_arguments:
+	echo $1 $2
+
+arguments_inside_quotes:
+	echo "First you said $1, then you said $2"
+
+word_arguments:
+	echo $*
+
+word_arguments_inside_quotes:
+	echo "$*"
