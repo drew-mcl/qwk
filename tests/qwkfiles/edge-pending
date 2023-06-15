@@ -1,4 +1,0 @@
-# This file is a dump for commands that may potentailly break the logic 
-# They will be tested at somepoint and moved into edge or experimental
-variable_sub:
-	echo $MESSAGE

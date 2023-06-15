@@ -1,16 +1,22 @@
-install: build promote
+MESSAGE="Hello, World!"
 
-promote:
-    mv qwk ~/bin/qwk
-    chmod +x ~/bin/qwk
-    echo "promoted new qwk version"
+greeting:
+	echo $(MESSAGE)
+
+say:
+	echo "$1"
+
+build-windows:
+	GOOS=windows GOARCH=amd64 go build ./cmd/qwk.go 
 
 build:
-    go build ./cmd/qwk
-    go test ./...
-    ./qwk -v
+	go build cmd/qwk.go	
 
-git:
-    git add . 
-    git commit -m "$*"
-    git push 
+commit:
+	git add .
+	git commit -m "$@"
+
+push:
+	git push
+
+git: commit push:

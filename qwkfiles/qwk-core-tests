@@ -1,0 +1,37 @@
+MESSAGE = "Hello, World!"
+# - The following targets are used for testing the core functionality of qwk.
+# - They are all expected to pass when qwk is working correctly.
+
+# ------ chains ------
+all: single_command chained_commands variable_sub
+
+# ------ commands ------
+single_command:
+	echo "Single command"
+
+chained_commands:
+	echo "Chained command 1" && echo "Chained command 2"
+
+# ------ variables ------
+variable_sub:
+	echo $(MESSAGE)
+
+build-windows:
+	GOOS=windows GOARCH=amd64 go build ./cmd/qwk.go 
+
+# ------ arguments ------ 
+single_argument:
+	echo $1
+
+multiple_arguments:
+	echo $1 $2
+
+arguments_inside_quotes:
+	echo "First you said $1, then you said $2"
+
+multi:
+	echo "first $1"
+	echo "second $2"
+
+word_arguments:
+	echo $@

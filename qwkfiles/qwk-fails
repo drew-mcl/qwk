@@ -1,0 +1,23 @@
+# The following are edge cases that require updates to core logic to work correctly.
+COMMAND_VAR = $(pwd)
+
+
+# first argument was not removed from the list of arguments
+single:
+	echo $1 $@
+
+# Have not implements complex var exec since refactor
+command_sub:
+	echo $(COMMAND_VAR)
+
+# It's not using the shell, its trying to run that as an executable
+and:
+	cd cmd/qwk && pwd
+
+# echo ran as /bin/echo dosnt expand with shell 
+echocommand: 
+	echo $(pwd)
+
+echonormalvar: 
+	VAR=hi echo $(VAR)
+

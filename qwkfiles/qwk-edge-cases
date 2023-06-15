@@ -6,16 +6,6 @@ GLOBALVAR="hello from global"
 # Basic command assignment - Works
 COMMANDVAR=$(pwd)
 
-# Works
-build: 
-    go build .
-
-# Works
-and:
-    cd cmd/qwk && pwd
-
-echocommand
-    echo $(pwd)
 
 # Does not work
 multistateful:
